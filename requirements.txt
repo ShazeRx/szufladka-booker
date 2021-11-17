@@ -1,0 +1,13 @@
+attrs==21.2.0
+colorama==0.4.4
+commonmark==0.9.1
+iniconfig==1.1.1
+packaging==21.2
+password==0.2
+pluggy==1.0.0
+py==1.11.0
+Pygments==2.10.0
+pyparsing==2.4.7
+pytest==6.2.5
+rich==10.14.0
+toml==0.10.2
