@@ -1,14 +1,19 @@
-from modele.mieszanki.json_serializacyjny_mieszanka import JsonSerializacyjnyMieszanka
+from dataclasses import dataclass
+
+from marshmallow import Schema, fields, post_load
 
 
-class ModelJWT(JsonSerializacyjnyMieszanka):
+@dataclass
+class ModelJWT:
     def __init__(self, dostepowy: str, odswiezajacy: str):
-        super().__init__(dostepowy=dostepowy, odswiezajacy=odswiezajacy)
+        self.dostepowy = dostepowy
+        self.odswiezajacy = odswiezajacy
 
-    @property
-    def daj_dostepowy(self):
-        return self._dostepowy
 
-    @property
-    def daj_odswiezajacy(self):
-        return self._odswiezajacy
+class JWTSchemat(Schema):
+    odswiezajacy = fields.Str()
+    dostepowy = fields.Str()
+
+    @post_load
+    def make_object(self, data, **kwargs):
+        return ModelJWT(**data)

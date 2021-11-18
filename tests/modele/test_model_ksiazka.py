@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from modele.ksiazka.model_ksiazka import ModelKsiazki
+from modele.ksiazka.model_ksiazka import ModelKsiazki, KsiazkaSchemat
 
 
 class TestModelKsiazki:
@@ -12,20 +12,19 @@ class TestModelKsiazki:
         return ModelKsiazki("Why we sleep", "Matthew Walker", 2017, "Helion")
 
     @pytest.fixture
-    def json(self):
+    def ksiazka_json(self):
         return json.dumps(dict(tytul='Why we sleep', autor='Matthew Walker', rok_wydania=2017, wydawnictwo='Helion'))
 
-    def tests_powinien_utworzyc_model_ksiazki_z_jsona(self, ksiazka, json):
+    def tests_powinien_utworzyc_model_ksiazki_z_jsona(self, ksiazka, ksiazka_json):
         # dzialaj
-        model_ksiazki = ModelKsiazki.z_jsona(json)
+        model_ksiazki = KsiazkaSchemat().loads(ksiazka_json)
 
         # zapewni
         assert model_ksiazki == ksiazka
 
-    def tests_powinien_utworzyc_jsona_z_ksiazki(self, ksiazka, json):
+    def tests_powinien_utworzyc_jsona_z_ksiazki(self, ksiazka, ksiazka_json):
         # dzialaj
-        ksiazka_json = ksiazka.na_json()
+        ksiazka_json = KsiazkaSchemat().dumps(ksiazka)
 
         # zapewni
-        assert ksiazka_json == json
-
+        assert ksiazka_json == ksiazka_json

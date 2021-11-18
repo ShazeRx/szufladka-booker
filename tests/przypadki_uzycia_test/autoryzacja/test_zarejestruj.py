@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import Mock
+
+import pytest
 
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from modele.uzytkownik.model_uzytkownika import ModelUzytkownika
@@ -9,7 +10,6 @@ from przypadki_uzycia.blad import Blad
 
 class TestZarejestruj:
 
-
     @pytest.fixture
     def mock_fasada(self):
         mock = Mock(spec=FasadaUzytkownika)
@@ -17,7 +17,7 @@ class TestZarejestruj:
 
     @pytest.fixture
     def uzytkownik(self):
-        return ModelUzytkownika(kryptonim="imie",  email="email@example.com", haslo="haslo")
+        return ModelUzytkownika(kryptonim="imie", email="email@example.com", haslo="haslo")
 
     @pytest.fixture
     def przypadek_uzycia(self, mock_fasada):
@@ -35,7 +35,7 @@ class TestZarejestruj:
 
     def test_powinien_zwrocic_blad(self, przypadek_uzycia, uzytkownik, mock_fasada):
         # zaloz
-        mock_fasada.zarejestruj.return_value = Blad()
+        mock_fasada.zarejestruj.return_value = Blad(kod=123, wiadomosc="cos")
 
         # dzialaj
         wynik = przypadek_uzycia.wykonaj(uzytkownik)

@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import Mock
+
+import pytest
 
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from modele.uzytkownik.model_jwt import ModelJWT
@@ -39,7 +40,7 @@ class TestZaloguj:
 
     def test_powinien_zwrocic_blad(self, przypadek_uzycia, uzytkownik, mock_fasada):
         # zaloz
-        mock_fasada.zaloguj.return_value = Blad()
+        mock_fasada.zaloguj.return_value = Blad(kod=300, wiadomosc="error")
 
         # dzialaj
         wynik = przypadek_uzycia.wykonaj(uzytkownik)
