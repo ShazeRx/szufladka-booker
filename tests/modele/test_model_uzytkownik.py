@@ -9,11 +9,11 @@ class TestModelUzytkownik:
 
     @pytest.fixture
     def uzytkownik(self):
-        return ModelUzytkownika("buzz", "oldrin", "email@example.com")
+        return ModelUzytkownika(kryptonim="buzz", haslo="email@example.com")
 
     @pytest.fixture
     def json(self):
-        return json.dumps(dict(imie='buzz', nazwisko='oldrin', email='email@example.com'))
+        return json.dumps(dict(kryptonim='buzz', haslo='email@example.com'))
 
     def tests_powinien_utworzyc_model_usera_z_jsona(self, uzytkownik, json):
         # dzialaj
@@ -24,17 +24,17 @@ class TestModelUzytkownik:
 
     def tests_powinien_utworzyc_jsona_z_uzytkownika(self, uzytkownik, json):
         # dzialaj
-        uzytkownikJson = uzytkownik.na_json()
+        uzytkownik_json = uzytkownik.na_json()
 
         # zapewnij
-        assert uzytkownikJson == json
+        assert uzytkownik_json == json
 
-    def tests_powinien_zwrocic_jsona_z_haslem(self):
+    def tests_powinien_zwrocic_jsona_z_emailem(self):
         # zaloz
-        uzytkownik = ModelUzytkownika("buzz", "oldrin", "email@example.com", haslo="haslo")
+        uzytkownik = ModelUzytkownika(kryptonim="buzz", haslo="haslo", email="email@example.com")
 
         # dzialaj
-        uzytkownikJson = uzytkownik.na_json()
+        uzytkownik_json = uzytkownik.na_json()
 
         # zapewnij
-        assert 'haslo' in uzytkownikJson
+        assert 'haslo' in uzytkownik_json

@@ -1,13 +1,13 @@
-from przypadki_uzycia.i_przypadek_uzycia import IUseCase
+from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
+from modele.uzytkownik.model_jwt import ModelJWT
+from modele.uzytkownik.model_uzytkownika import ModelUzytkownika
+from przypadki_uzycia.blad import Blad
+from przypadki_uzycia.i_przypadek_uzycia import IPrzypadekUzycia
 
 
-class LoginUseCase(IUseCase):
+class ZalogujPrzypadekUzycia(IPrzypadekUzycia):
+    def __init__(self, fasada_uzytkownika: FasadaUzytkownika):
+        self.fasadaUzytkownika = fasada_uzytkownika
 
-    def __enter__(self):
-        pass
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
-
-    def execute(self):
-        pass
+    def wykonaj(self, model_uzytkownika: ModelUzytkownika) -> ModelJWT or Blad:
+        return self.fasadaUzytkownika.zaloguj(model_uzytkownika)
