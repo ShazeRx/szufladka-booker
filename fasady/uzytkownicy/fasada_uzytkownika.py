@@ -15,9 +15,10 @@ class FasadaUzytkownika:
         odpowiedz = self.i_klient_http.post(jwt="jwt", body=self.uzytkownik_schemat.dumps(model_uzytkownika),
                                             url=LOGOWANIE_ENDPOINT)
         # TODO: Zrobic response jako obiekt nie jako tupla
-        if odpowiedz_kod := odpowiedz[1] != 200:
+        if (odpowiedz_kod := odpowiedz[1]) != 200:
             return Blad(odpowiedz_kod, odpowiedz[0])
-        return self.jwt_schemat.loads(odpowiedz[0])
+        print(odpowiedz)
+        return self.jwt_schemat.load(odpowiedz[0])
 
     def zarejestruj(self, model_uzytkownika: ModelUzytkownika) -> None or Blad:
         odpowiedz = self.i_klient_http.post("jwt", self.uzytkownik_schemat.dumps(model_uzytkownika),
@@ -27,7 +28,7 @@ class FasadaUzytkownika:
         return None
 
     def wyswietl_profil(self) -> ModelUzytkownika or Blad:
-        odpowiedz = self.i_klient_http.post(jwt="jwt", url=PROFIL_ENDPOINT)
+        odpowiedz = self.i_klient_http.get(jwt="jwt", url=PROFIL_ENDPOINT)
         if odpowiedz_kod := odpowiedz[1] != 200:
             return Blad(odpowiedz_kod, odpowiedz[0])
-        return self.uzytkownik_schemat.loads(odpowiedz[0])
+        return self.uzytkownik_schemat.load(odpowiedz[0])

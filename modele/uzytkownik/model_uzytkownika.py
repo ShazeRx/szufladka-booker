@@ -7,13 +7,15 @@ from marshmallow import Schema, fields, post_load
 
 @dataclass
 class ModelUzytkownika:
-    def __init__(self, kryptonim=None, haslo=None, email=None):
+    def __init__(self, id=None, kryptonim=None, haslo=None, email=None):
+        self.id = id
         self.kryptonim = kryptonim
         self.haslo = haslo
         self.email = email
 
 
 class UzytkownikSchemat(Schema):
+    id = fields.Integer()
     kryptonim = fields.Str()
     email = fields.Str(required=False)
     haslo = fields.Str()

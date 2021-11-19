@@ -1,4 +1,4 @@
-
+import interfejs
 import rdzen
 from rdzen.szufladka import Szufladka
 from rdzen.wstrzykiwacz_zaleznosci.kontener_wstrzykiwania import WstrzykiwaczZaleznosci
@@ -6,7 +6,7 @@ from rdzen.wstrzykiwacz_zaleznosci.kontener_wstrzykiwania import WstrzykiwaczZal
 
 def main():
     wstrzykiwacz_zaleznosci = WstrzykiwaczZaleznosci()
-    wstrzykiwacz_zaleznosci.wire(modules=[rdzen.szufladka])
+    wstrzykiwacz_zaleznosci.wire(modules=[interfejs.interfejs_kontroler, rdzen.szufladka])
     app = Szufladka()
     app.uruchom()
 

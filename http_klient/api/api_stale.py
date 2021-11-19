@@ -1,6 +1,6 @@
 API_URL = "https://stoplight.io/mocks/alkoinfa/szufladka/11921495"
 LOGOWANIE_ENDPOINT = "/login"
-REJESTRACJA_ENDPOINT = "/register"
+REJESTRACJA_ENDPOINT = "/rejestracja"
 PROFIL_ENDPOINT = "/profil"
 KSIAZKA_ODDAJ = "/oddaj"
 KSIAZKA_DODAJ = "/dodaj"

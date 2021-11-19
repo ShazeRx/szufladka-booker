@@ -4,8 +4,8 @@ import pytest
 
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from modele.uzytkownik.model_uzytkownika import ModelUzytkownika
-from przypadki_uzycia.autoryzacja.zarejestruj import ZarejestrujPrzypadekUzycia
 from przypadki_uzycia.blad import Blad
+from przypadki_uzycia.uzytkownik.zarejestruj import ZarejestrujPrzypadekUzycia
 
 
 class TestZarejestruj:

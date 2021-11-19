@@ -5,8 +5,8 @@ import pytest
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from modele.uzytkownik.model_jwt import ModelJWT
 from modele.uzytkownik.model_uzytkownika import ModelUzytkownika
-from przypadki_uzycia.autoryzacja.zaloguj import ZalogujPrzypadekUzycia
 from przypadki_uzycia.blad import Blad
+from przypadki_uzycia.uzytkownik.zaloguj import ZalogujPrzypadekUzycia
 
 
 class TestZaloguj:

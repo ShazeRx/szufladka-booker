@@ -4,11 +4,9 @@ from przypadki_uzycia.blad import Blad
 from przypadki_uzycia.i_przypadek_uzycia import IPrzypadekUzycia
 
 
-class ZarejestrujPrzypadekUzycia(IPrzypadekUzycia):
+class WyswietlProfilPrzypadekUzycia(IPrzypadekUzycia):
     def __init__(self, fasada_uzytkownika: FasadaUzytkownika):
         self.fasadaUzytkownika = fasada_uzytkownika
 
-    def wykonaj(self, model_uzytkownika: ModelUzytkownika) -> None or Blad:
-        return self.fasadaUzytkownika.zarejestruj()
-
-
+    def wykonaj(self) -> ModelUzytkownika or Blad:
+        return self.fasadaUzytkownika.wyswietl_profil()
