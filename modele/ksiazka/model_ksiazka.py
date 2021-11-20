@@ -5,7 +5,7 @@ from marshmallow import Schema, fields, post_load
 
 @dataclass
 class ModelKsiazki:
-    def __init__(self, indeks, tytul, autor, rok_wydania, wydawnictwo):
+    def __init__(self, tytul, autor, rok_wydania, wydawnictwo, indeks=None):
         self.indeks = indeks
         self.tytul = tytul
         self.autor = autor
@@ -14,7 +14,7 @@ class ModelKsiazki:
 
 
 class KsiazkaSchemat(Schema):
-    indeks = fields.Integer()
+    indeks = fields.Integer(load_only=True)
     tytul = fields.Str()
     autor = fields.Str()
     rok_wydania = fields.Integer()

@@ -15,8 +15,9 @@ class FormularzSzczegolyKsiazkiMoje(FormularzSzczegolyKsiazki):
     def on_ok(self):
         wynik = self.oddaj_ksiazke.wykonaj(indeks=self.indeks.value)
         if isinstance(wynik, Blad):
-            npyscreen.notify_confirm("Wystapil blad przy oddawaniu")
+            npyscreen.notify_confirm("Wystapil blad przy oddawaniu", form_color='DANGER')
             return
+        npyscreen.notify_confirm("Oddano", form_color='GOODHL')
         self.on_cancel()
 
     def on_cancel(self):

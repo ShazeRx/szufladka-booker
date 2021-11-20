@@ -24,6 +24,8 @@ class FormularzLogowania(npyscreen.FormBaseNew):
         wynik = self.zaloguj_przypadek_uzycia.wykonaj(model_uzytkownika)
         if not isinstance(wynik, Blad):
             self.pokaz_ekran_glowny()
+            self.kryptonim.update()
+            self.haslo.update()
             return
         npyscreen.notify_confirm("Zly kryptonim lub haslo")
 

@@ -17,6 +17,7 @@ class FormularzSzczegolyKsiazkiSzufladka(FormularzSzczegolyKsiazki):
         if isinstance(wynik, Blad):
             npyscreen.notify_confirm("Wystapil blad przy oddawaniu")
             return
+        npyscreen.notify_confirm("Dodano do profilu", form_color='GOODHL')
         self.on_cancel()
 
     def on_cancel(self):

@@ -16,8 +16,9 @@ class FasadaKsiazki:
             return Blad(odpowiedz_kod, odpowiedz[0])
         return None
 
-    def dodaj_ksiazke(self) -> None or Blad:
-        odpowiedz = self.i_klient_http.post(jwt="jwt", url=KSIAZKA_DODAJ)
+    def dodaj_ksiazke(self, model_ksiazki: ModelKsiazki) -> None or Blad:
+        odpowiedz = self.i_klient_http.post(jwt="jwt", url=KSIAZKA_DODAJ,
+                                            body=self.ksiazka_schemat.dumps(model_ksiazki))
         # TODO: Zrobic response jako obiekt nie jako tupla
         if odpowiedz_kod := odpowiedz[1] != 200:
             return Blad(odpowiedz_kod, odpowiedz[0])

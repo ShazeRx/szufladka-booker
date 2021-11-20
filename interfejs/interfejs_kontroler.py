@@ -9,6 +9,7 @@ from interfejs.formularze.ksiazki.formularz_szczegoly_ksiazki_szufladka import F
 from interfejs.formularze.uzytkownik.formularz_logowania import FormularzLogowania
 from interfejs.formularze.uzytkownik.formularz_profil import FormularzProfil
 from interfejs.formularze.uzytkownik.formularz_rejestracja import FormularzRejestracja
+from przypadki_uzycia.ksiazki.dodaj_ksiazke import DodajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.oddaj_ksiazke import OddajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.wez_ksiazke import WezKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.wyswietl_ksiazki_w_szufladce import WyswietlKsiazkiWSzufladce
@@ -31,6 +32,8 @@ class InterfejsKontroler(npyscreen.NPSAppManaged):
                                     WstrzykiwaczZaleznosci.przypadki_uzycia.rejestracja_przypadek_uzycia],
                                 pokaz_ksiazki_w_szufladce: WyswietlKsiazkiWSzufladce = Provide[
                                     WstrzykiwaczZaleznosci.przypadki_uzycia.ksiazki_w_szufladce],
+                                dodaj_ksiazke: DodajKsiazkePrzypadekUzycia = Provide[
+                                    WstrzykiwaczZaleznosci.przypadki_uzycia.dodaj_ksiazke],
                                 wyswietl_profil_przypadek_uzycia: WyswietlProfilPrzypadekUzycia = Provide[
                                     WstrzykiwaczZaleznosci.przypadki_uzycia.wyswietl_profil_przypadek_uzycia],
                                 wez_ksiazke: WezKsiazkePrzypadekUzycia = Provide[
@@ -48,7 +51,8 @@ class InterfejsKontroler(npyscreen.NPSAppManaged):
         self.addForm("EKRAN_GLOWNY", EkranGlowny, name="Eran Glowny",
                      pokaz_ksiazki_w_szufladce=pokaz_ksiazki_w_szufladce)
 
-        self.addForm("DODAWANIE_KSIAZKI", FormularzDodawaniaKsiazki, name="Dodawanie Ksiazki")
+        self.addForm("DODAWANIE_KSIAZKI", FormularzDodawaniaKsiazki, name="Dodawanie Ksiazki",
+                     dodaj_ksiazke=dodaj_ksiazke)
 
         self.addForm("PROFIL", FormularzProfil, name="Profil",
                      wyswietl_profil_przypadek_uzycia=wyswietl_profil_przypadek_uzycia)

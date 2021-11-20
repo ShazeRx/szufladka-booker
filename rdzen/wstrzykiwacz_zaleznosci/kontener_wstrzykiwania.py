@@ -3,6 +3,7 @@ from dependency_injector import containers, providers
 from fasady.fasada_ksiazek.fasada_ksiazki import FasadaKsiazki
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from http_klient.klient_http import KlientHttp
+from przypadki_uzycia.ksiazki.dodaj_ksiazke import DodajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.oddaj_ksiazke import OddajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.wez_ksiazke import WezKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.wyswietl_ksiazki_w_szufladce import WyswietlKsiazkiWSzufladce
@@ -39,6 +40,8 @@ class PrzypadkiUzycia(containers.DeclarativeContainer):
     moje_ksiazki = providers.Factory(WyswietlMojeKsiazkiPrzypadekUzycia, fasada_ksiazki=fasada_kontener.fasada_ksiazki)
 
     oddaj_ksiazke = providers.Factory(OddajKsiazkePrzypadekUzycia, fasada_ksiazki=fasada_kontener.fasada_ksiazki)
+
+    dodaj_ksiazke = providers.Factory(DodajKsiazkePrzypadekUzycia, fasada_ksiazki=fasada_kontener.fasada_ksiazki)
 
 
 class WstrzykiwaczZaleznosci(containers.DeclarativeContainer):

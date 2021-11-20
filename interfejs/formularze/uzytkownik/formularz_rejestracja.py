@@ -28,6 +28,9 @@ class FormularzRejestracja(npyscreen.FormBaseNew):
         if not isinstance(wynik, Blad):
             pass
         npyscreen.notify_confirm("Cos poszło nie tak")
+        self.kryptonim.update()
+        self.haslo.update()
+        self.email.update()
 
     def powrot(self):
         self.parentApp.zmien_ekran("MAIN")

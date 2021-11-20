@@ -24,8 +24,10 @@ class FormularzProfil(npyscreen.ActionFormMinimal):
         if not isinstance(wynik, Blad):
             self.kryptonim.value = wynik.kryptonim
             self.email.value = wynik.email
+            self.kryptonim.display()
+            self.email.display()
             return
-        npyscreen.notify_confirm("Cos poszlo nie tak")
+        npyscreen.notify_confirm("Cos poszlo nie tak", form_color='DANGER')
 
     def on_ok(self):
         self.parentApp.zmien_ekran("EKRAN_GLOWNY")
