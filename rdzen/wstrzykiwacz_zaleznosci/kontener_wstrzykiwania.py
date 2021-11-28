@@ -3,6 +3,7 @@ from dependency_injector import containers, providers
 from fasady.fasada_ksiazek.fasada_ksiazki import FasadaKsiazki
 from fasady.uzytkownicy.fasada_uzytkownika import FasadaUzytkownika
 from http_klient.klient_http import KlientHttp
+from http_klient.narzedzia_http.jwt_opiekun import JwtOpiekun
 from przypadki_uzycia.ksiazki.dodaj_ksiazke import DodajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.oddaj_ksiazke import OddajKsiazkePrzypadekUzycia
 from przypadki_uzycia.ksiazki.wez_ksiazke import WezKsiazkePrzypadekUzycia
@@ -14,13 +15,16 @@ from przypadki_uzycia.uzytkownik.zarejestruj import ZarejestrujPrzypadekUzycia
 
 
 class KlientKttp(containers.DeclarativeContainer):
-    klient_http = providers.Singleton(KlientHttp)
+    jwt_opiekun = providers.Singleton(JwtOpiekun)
+
+    klient_http = providers.Singleton(KlientHttp, jwt_opiekun=jwt_opiekun)
 
 
 class Fasady(containers.DeclarativeContainer):
     klient_http_kontener = providers.DependenciesContainer()
 
-    fasada_uzytkownik = providers.Factory(FasadaUzytkownika, i_klient_http=klient_http_kontener.klient_http)
+    fasada_uzytkownik = providers.Factory(FasadaUzytkownika, i_klient_http=klient_http_kontener.klient_http,
+                                          jwt_opiekun=klient_http_kontener.jwt_opiekun)
 
     fasada_ksiazki = providers.Factory(FasadaKsiazki, i_klient_http=klient_http_kontener.klient_http)
 
